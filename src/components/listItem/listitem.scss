@@ -1,0 +1,46 @@
+.listItem {
+  width: 225px;
+  height: 120px;
+  background-color: var(--main-color);
+  margin-right: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  color: white;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &:hover {
+    width: 350px;
+    height: 275px;
+    position: relative;
+    box-shadow: 10px 10px 5px 0px rgba(218, 237, 237, 0.63);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(218, 237, 237, 0.63);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(218, 237, 237, 0.63);
+
+    img {
+      height: 140px;
+    }
+    .itemInfo{
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+
+        .icons{
+            display: flex;
+            margin: 10px;
+        }
+
+        .icon {
+            align-items: center;
+            padding: 5px;
+            border: 2px solid white;
+            border-radius: 55%;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+    }
+  }
+}
