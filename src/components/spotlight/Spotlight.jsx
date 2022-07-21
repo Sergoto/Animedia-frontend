@@ -1,8 +1,28 @@
-import { InfoOutlined, PlayArrow } from '@mui/icons-material';
-import React from 'react'
+import { Add, InfoOutlined } from '@mui/icons-material';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import "./spotlight.scss"
 
-export default function Spotlight({type}) {
+export default function Spotlight({ type }) {
+  const [content, setContent] = useState({});
+
+  useEffect(() => {
+    const getRandomContent = async () => {
+      try {
+        const res = await axios.get(`/anime/random?type=${type}`, {
+          headers: {
+            token:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDg2OWYzYjUyMDAzOTk1NWUxYjAyMyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1ODQyNzU3NiwiZXhwIjoxNjU4ODU5NTc2fQ.ThwDwVEzSux_tiunfreJaCJNvIUtDsv5EDkl9MeQ5v0",
+          },
+        });
+        setContent(res.data[0]);
+      } catch (err) {
+        console.log(err)
+      }
+    };
+    getRandomContent();
+  }, [type])
+  console.log(content)
   return (
     <div className="spotlight">
       {type && (
@@ -12,37 +32,29 @@ export default function Spotlight({type}) {
             <option>Genre</option>
             <option value="adventure">Adventure</option>
             <option value="comedy">Comedy</option>
-            <option value="crime">Crime</option>
             <option value="fantasy">Fantasy</option>
-            <option value="historical">Historical</option>
-            <option value="horror">Horror</option>
-            <option value="romance">Romance</option>
-            <option value="sci-fi">Sci-fi</option>
-            <option value="thriller">Thriller</option>
-            <option value="western">Western</option>
-            <option value="animation">Animation</option>
-            <option value="drama">Drama</option>
-            <option value="documentary">Documentary</option>
+            <option value="Shonen">Shonen</option>
+            <option value="slice-of-life">Slice-of-Life</option>
+            <option value="isekai">Isekai</option>
+            <option value="sports">Sports</option>
+            <option value="horro">Horror</option>
           </select>
         </div>
       )}
-      <img src="https://imgur.com/btjGBM2.png" alt="feature" />
+      <img src={content.img} alt="feature" />
       <div className="info">
         <img
           className="feature"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Sword_Art_Online_anime_logo.svg/1280px-Sword_Art_Online_anime_logo.svg.png"
+          src={content.imgTitle}
           alt=""
         />
-        <span className="details">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat,
-          expedita delectus, nam cumque mollitia obcaecati nisi atque quam ea
-          repudiandae tempora voluptate cupiditate aliquid sint blanditiis nemo
-          culpa. Dolorum, debitis.
+        <span className="desc">
+         {content.desc}
         </span>
         <div className="buttons">
           <button className="play">
-            <PlayArrow />
-            <span>Play</span>
+            <Add />
+            <span>Add</span>
           </button>
           <button className="more">
             <InfoOutlined />
