@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import "./login.scss"
+import { login } from "../../authContext/apiCalls";
+import { AuthContext } from "../../authContext/AuthContext";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { dispatch } = useContext(AuthContext);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login({ email, password }, dispatch);
+  };
   return (
     <div className="login">
       <div className="top">
@@ -12,9 +22,19 @@ function Login() {
       <div className="container2">
         <form>
           <h2>Welcome to Animedia</h2>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="PassWord" />
-          <button className="loginButton">Sign In</button>
+          <input
+            type="email"
+            placeholder="Email or phone number"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className="loginButton" onClick={handleLogin}>
+            Sign In
+          </button>
           <p>
             “Every journey begins with a single step. We just have to have
             patience.” – Milly Thompson (Trigun)

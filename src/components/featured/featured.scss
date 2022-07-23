@@ -1,10 +1,13 @@
-.spotlight {
+@import "../../app.scss";
+
+
+.featured {
   height: 90vh;
   position: relative;
 
   .category {
     position: fixed;
-    top: 200px;
+    top: 150px;
     left: 50px;
     font-size: 30px;
     font-weight: bold;
@@ -19,7 +22,6 @@
       color: white;
       margin-left: 20px;
       padding: 5px;
-      align-items: center;
     }
   }
 
@@ -28,10 +30,18 @@
     width: 100%;
     height: 90%;
     object-fit: cover;
+
+      @include tablet {
+       object-fit:scale-down;
+      }
+
+      @include mobile {
+        object-fit: scale-down;
+      }
   }
 
   .info {
-    width: 35%;
+    width: 25%;
     position: absolute;
     left: 50px;
     bottom: 100px;
@@ -39,9 +49,17 @@
     display: flex;
     flex-direction: column;
   }
-  .details {
+
+  .desc {
     margin: 20px 0px;
+    font-weight: bold;
+
+      @include mobile {
+        width: 60vw;
+        font-size: 14px;
+      }
   }
+
   .buttons {
     display: flex;
     button {
@@ -54,6 +72,11 @@
       font-weight: bold;
       margin-right: 10px;
       cursor: pointer;
+
+
+      @include mobile {
+        display: none;
+      }
     }
   }
 }

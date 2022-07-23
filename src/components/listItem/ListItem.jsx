@@ -1,51 +1,59 @@
-import { Add, Info, ThumbDown, ThumbUp } from '@mui/icons-material';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./listitem.scss"
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { Add, Info, ThumbDown, ThumbUp } from "@mui/icons-material";
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-
-function ListItem({ index, item }) {
-  
+export default function ListItem({ index, item }) {
+  const [isHovered, setIsHovered] = useState(false);
   const [anime, setAnime] = useState({});
 
   useEffect(() => {
     const getAnime = async () => {
       try {
         const res = await axios.get("/anime/find/" + item, {
+  
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDg2OWYzYjUyMDAzOTk1NWUxYjAyMyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1ODQyNzU3NiwiZXhwIjoxNjU4ODU5NTc2fQ.ThwDwVEzSux_tiunfreJaCJNvIUtDsv5EDkl9MeQ5v0",
+              "Bearer " +
+              JSON.parse(localStorage.getItem("user")).accessToken,
           },
-        }); setAnime(res.data);
+        });
+        setAnime(res.data)
       } catch (err) {
-        console.log(err);
+        console.log(err)
       }
     }; getAnime();
-  }, [item])
-
+  },[item])
+  
   return (
-    <Link to={{ pathname: "/details", anime:anime}}>
-      <div className="listItem">
-        <img src={anime?.img} alt="" />
-        <div className="itemInfo">
-          <div className="icons">
-            <Info className="icon" />
-            <Add className="icon" />
-            <ThumbUp className="icon" />
-            <ThumbDown className="icon" />
-          </div>
-          <div className="itemInfoTop">
-            <span className="limit">+{anime.limit}</span>
-            <span>{anime.year}</span>
-          </div>
-          <div className="desc">{anime.desc}</div>
-          <div className="genre">{anime.genre}</div>
-        </div>
+    <Link to={{ pathname: "/details", anime: anime }}>
+      <div
+        className="listItem"
+        style={{ left: isHovered && index * 285 - 50 + index * 2.5 }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <img src={anime.img} alt="" />
+        {isHovered && (
+          <>
+            <div className="itemInfo">
+              <div className="icons">
+                <Info className="icon" />
+                <Add className="icon" />
+                <ThumbUp className="icon" />
+                <ThumbDown className="icon" />
+              </div>
+              <div className="itemInfoTop">
+                <div className="title">{anime.title}</div>
+                <div className="genre">{anime.genre}</div>
+                <span className="year">{anime.year}</span>
+              </div>
+              <div className="desc">{anime.desc}</div>
+            </div>
+          </>
+        )}
       </div>
     </Link>
   );
 }
-
-export default ListItem

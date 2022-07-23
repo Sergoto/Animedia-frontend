@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import Navbar from "../../components/navbar/Navbar";
+import Featured from "../../components/featured/Featured";
 import "./home.scss";
-import Navbar from "../navbar/Navbar";
-import Spotlight from "../spotlight/Spotlight";
-import List from "../list/List";
+import List from "../../components/list/List";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Home = ({ type }) => {
   const [lists, setLists] = useState([]);
-  const [genre, setGenre] = useState(null);
+  const [genre, setGenre] =useState(null)
 
   useEffect(() => {
     const getRandomLists = async () => {
@@ -19,24 +19,24 @@ const Home = ({ type }) => {
           {
             headers: {
               token:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDg2OWYzYjUyMDAzOTk1NWUxYjAyMyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1ODQyNzU3NiwiZXhwIjoxNjU4ODU5NTc2fQ.ThwDwVEzSux_tiunfreJaCJNvIUtDsv5EDkl9MeQ5v0",
+                "Bearer " +
+                JSON.parse(localStorage.getItem("user")).accessToken,
             },
           }
         );
-        setLists(res.data);
+        // console.log(res)
+        setLists(res.data)
       } catch (err) {
-        console.log(err);
+        console.log(err)
       }
-    };
-    getRandomLists();
-  }, [type, genre]);
-
+    }; getRandomLists();
+  }, [type, genre])
   return (
     <div className="home">
       <Navbar />
-      <Spotlight type={type} setGenre={setGenre} />
-      {lists.map((list, key)  => (
-        <List key={key} list={list}/>
+      <Featured type={type} setGenre={setGenre}/>
+      {lists.map((list, key) => (
+        <List key={ key} list={list}/>
       ))}
     </div>
   );

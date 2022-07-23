@@ -6,7 +6,7 @@
     color: white;
     font-size: 20px;
     font-weight: bold;
-    margin-left: 50px;
+    margin-left: 100px;
   }
 
   .wrapper {
@@ -14,7 +14,7 @@
     .sliderArrow {
       width: 50px;
       height: 100%;
-      background-color: rgb(25, 25, 25, 0.5);
+      background-color: rgb(22, 22, 22, 0.5);
       color: white;
       position: absolute;
       z-index: 99;
@@ -34,10 +34,10 @@
     .container {
       margin-left: 50px;
       display: flex;
-      margin-top: 15px;
+      margin-top: 10px;
       width: max-content;
       transform: translateX(0px);
-      transition: all 1s ease;
+      transition: all 2s ease;
     }
   }
 }
