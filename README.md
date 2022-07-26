@@ -1,6 +1,6 @@
 # Animedia 
 ![Logo](https://i.imgur.com/bUkPzWI.jpg)
-## Application Link: [Sign up or login here](https://splendorous-pegasus-bc7f12.netlify.app/register) 
+## Application Link: [Sign up or login here](https://splendorous-pegasus-bc7f12.netlify.app/) 
 ## Project Description
                Animedia is a Anime Database for the Anime lover! 
                Animedia is designed to let users create accounts and then be able to 
