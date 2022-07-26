@@ -2,6 +2,7 @@ import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@mui/icons-materi
 import { useRef, useState } from "react";
 import ListItem from "../listItem/ListItem";
 import "./list.scss";
+import React from "react";
 
 export default function List({list}) {
   const [isMoved, setIsMoved] = useState(false);

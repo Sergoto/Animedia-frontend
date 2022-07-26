@@ -4,6 +4,7 @@ import "./home.scss";
 import List from "../../components/list/List";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import React from "react";
 
 const Home = ({ type }) => {
   const [lists, setLists] = useState([]);

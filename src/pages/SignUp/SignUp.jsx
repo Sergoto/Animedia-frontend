@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./signup.scss";
+import React from "react";
 
 export default function Register() {
   const [email, setEmail] = useState("");
