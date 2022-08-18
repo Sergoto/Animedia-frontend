@@ -12,7 +12,14 @@
 - Languages: JavaScript, HTML5, CSS
 - Notable Frameworks/Dependencies: [React](https://reactjs.org/), [Sass](https://sass-lang.com/) [Axios](https://axios-http.com/docs/intro)
 
-  
+
+### App Screenshots:
+![Sign Up Screen](https://i.imgur.com/xQaOFMf.jpg)
+![Login Screen](https://i.imgur.com/FZaaYwV.jpg)
+![Featured Title Screen](https://i.imgur.com/nXBokM4.jpg)
+![List Titles Screen](https://i.imgur.com/E9W44fI.jpg)
+![Hover Title List Screen](https://i.imgur.com/wvoLBPo.png)
+
 ## User Stories
   
 - As a user I want to be able to create an account and login and logout.
